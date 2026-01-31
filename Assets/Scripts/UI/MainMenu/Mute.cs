@@ -8,12 +8,17 @@ public class Mute : ButtonBaseClass
     private Image ObjectImage;
     void Awake()
     {
-        _mute = false;
+        _mute = false;        
         if(TryGetComponent<Image>(out Image img))
         {
             ObjectImage = img;
             ObjectImage.sprite = VolumeImage[0];
         }
+    }
+
+    void Start()
+    {
+        MusicManager.Instance.Play("mainmenu");
     }
     public override void OnClick()
     {
