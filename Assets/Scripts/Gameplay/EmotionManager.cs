@@ -27,6 +27,9 @@ public class EmotionManager : MonoBehaviour
     public Image eyeLayer;
     public Image mouthLayer;
 
+    [Header("UI Button")]
+    public Button ApplyButton;
+
 
     public void CheckCurrentEmotion()
     {
@@ -60,6 +63,22 @@ public class EmotionManager : MonoBehaviour
         {
             Debug.Log("KOMBINASI TIDAK VALID");
         }
+    }
+
+    void UpdateApplyButtonState()
+    {
+        bool isComplete =
+            baseLayer.sprite != null &&
+            eyeLayer.sprite != null &&
+            mouthLayer.sprite != null;
+
+        ApplyButton.interactable = isComplete;
+    }
+
+
+    private void Update()
+    {
+        UpdateApplyButtonState();
     }
 
 

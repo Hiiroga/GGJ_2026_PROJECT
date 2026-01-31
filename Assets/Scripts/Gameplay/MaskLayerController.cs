@@ -6,9 +6,14 @@ using static UnityEditor.Progress;
 
 public class MaskLayerController : MonoBehaviour, IDropHandler
 {
+    [Header("Image Layer")]
     public Image baseLayer;
     public Image eyeLayer;
     public Image mouthLayer;
+
+    [Header("SFX")]
+    public AudioSource audioSource;
+    public AudioClip[] dropClips;
 
     private DragableItem usedBaseItem;
     private DragableItem usedEyeItem;
@@ -30,6 +35,8 @@ public class MaskLayerController : MonoBehaviour, IDropHandler
                     usedBaseItem = item;               
                     item.isDroppedOnSlot = true;
                     item.gameObject.SetActive(false);
+
+                    PlayRandomDropSFX();
                 }
                 break;
 
@@ -40,6 +47,8 @@ public class MaskLayerController : MonoBehaviour, IDropHandler
                     usedEyeItem = item;            
                     item.isDroppedOnSlot = true;
                     item.gameObject.SetActive(false);
+
+                    PlayRandomDropSFX();
                 }
                 break;
 
@@ -50,9 +59,19 @@ public class MaskLayerController : MonoBehaviour, IDropHandler
                     usedMouthItem = item;           
                     item.isDroppedOnSlot = true;
                     item.gameObject.SetActive(false);
+
+                    PlayRandomDropSFX();
                 }
                 break;
         }
+    }
+
+    void PlayRandomDropSFX()
+    {
+        if (dropClips == null || dropClips.Length == 0) return;
+
+        int index = Random.Range(0, dropClips.Length);
+        audioSource.PlayOneShot(dropClips[index]);
     }
 
     public void resetLayer()
