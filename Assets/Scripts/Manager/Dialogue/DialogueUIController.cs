@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,7 +10,13 @@ public class DialogueUIController : MonoBehaviour
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
 
+    [Header("Typewriter Settings")]
+    [SerializeField] private float typeSpeed = 0.03f;
+
     private PlayerInput playerInput;
+    private Coroutine typewriterCoroutine;
+    private string currentFullText;
+    private bool isTyping;
 
     private void OnEnable()
     {
@@ -75,26 +82,76 @@ public class DialogueUIController : MonoBehaviour
 
     private void OnContinueInput(InputAction.CallbackContext context)
     {
+        if (Time.timeScale == 0f) return;
+
         if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive)
         {
-            DialogueManager.Instance.ContinueDialogue();
+            // If currently typing, complete the text instantly
+            if (isTyping)
+            {
+                CompleteTyping();
+            }
+            else
+            {
+                DialogueManager.Instance.ContinueDialogue();
+            }
         }
     }
 
     private void HandleDialogueStarted(DialogueEntry entry)
     {
-        ShowDialogue();        
+        ShowDialogue();
     }
 
     private void HandleDialogueEnded()
     {
+        StopTypewriter();
         HideDialogue();
     }
 
     private void HandleDialogueLineChanged(string speakerName, string text)
     {
         speakerNameText.text = speakerName;
-        dialogueText.text = text;
+        StartTypewriter(text);
+    }
+
+    private void StartTypewriter(string text)
+    {
+        StopTypewriter();
+        currentFullText = text;
+        typewriterCoroutine = StartCoroutine(TypewriterRoutine(text));
+    }
+
+    private void StopTypewriter()
+    {
+        if (typewriterCoroutine != null)
+        {
+            StopCoroutine(typewriterCoroutine);
+            typewriterCoroutine = null;
+        }
+        isTyping = false;
+    }
+
+    private void CompleteTyping()
+    {
+        StopTypewriter();
+        dialogueText.text = currentFullText;
+    }
+
+    private IEnumerator TypewriterRoutine(string text)
+    {
+        isTyping = true;
+        dialogueText.text = "";
+
+        foreach (char c in text)
+        {
+            dialogueText.text += c;
+            SfxManager.Instance.Play("textsound");
+            yield return new WaitForSecondsRealtime(typeSpeed);
+        }
+
+        isTyping = false;
+        typewriterCoroutine = null;
     }
 
     private void ShowDialogue()

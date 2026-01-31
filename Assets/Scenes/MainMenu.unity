@@ -527,6 +527,9 @@ MonoBehaviour:
   - key: playbutton
     clip: {fileID: 8300000, guid: 229596991bf5fe140aca9e27992a7fc4, type: 3}
     volume: 1
+  - key: textsound
+    clip: {fileID: 8300000, guid: 3b9aa12306a6c79429c7430cbcfca19e, type: 3}
+    volume: 1
 --- !u!4 &538495811
 Transform:
   m_ObjectHideFlags: 0
