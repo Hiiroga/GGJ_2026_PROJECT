@@ -1,6 +1,8 @@
-using System;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NPCQueueManager : MonoBehaviour
 {
@@ -29,6 +31,8 @@ public class NPCQueueManager : MonoBehaviour
     public NPCData CurrentNPC { get; private set; }
     public bool IsNPCWaiting => CurrentNPC != null;
 
+    public float Timing;
+
     private void Awake()
     {
         if (Instance == null)
@@ -47,7 +51,8 @@ public class NPCQueueManager : MonoBehaviour
         if( CurrentDay >= 4)
         {
             //ending
-            //TODO: EndingUI.Instance.ShowEnding();
+            //TODO: Scene(Ending)
+            SceneManager.LoadScene(3);
             return;
         }
         GameFlowController.Instance.NextDay.gameObject.SetActive(false);
@@ -129,12 +134,19 @@ public class NPCQueueManager : MonoBehaviour
         // NPC pergi, panggil berikutnya
         CurrentNPC = null;
     }
+
+    IEnumerator CallNPCDelay()
+    {
+
+        yield return new WaitForSeconds(2f);
+        CallNextNPC();
+    }
  
     public void OnNPCLeft()
     {
         if (npcQueue.Count > 0)
         {
-            CallNextNPC();
+            StartCoroutine(CallNPCDelay());
         }
         else
         {

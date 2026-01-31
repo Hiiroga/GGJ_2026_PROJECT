@@ -40,6 +40,7 @@ public class EmotionManager : MonoBehaviour
             Debug.Log("MASK BELUM LENGKAP");
             return;
         }
+        CraftingManager.Instance.ButtonCrafting.gameObject.SetActive(false);
 
         MaskType currentMask = baseLayer.sprite == maskPutih
             ? MaskType.Putih
@@ -56,7 +57,6 @@ public class EmotionManager : MonoBehaviour
         else if (mouthLayer.sprite == mouthCemberut)
             currentMouth = MouthType.Cemberut;
 
-        
         MaskNeeded result = DetectEmotion(
             currentMask,
             currentEye,

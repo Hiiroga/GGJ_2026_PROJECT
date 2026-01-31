@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PrologPanel
@@ -51,7 +52,7 @@ public class PrologManager : MonoBehaviour
         }
 
         // TODO: lanjut ke scene gameplay
-        Debug.Log("PROLOG SELESAI");
+        SceneManager.LoadScene(2);
     }
 
     IEnumerator PlayPanel(PrologPanel p)

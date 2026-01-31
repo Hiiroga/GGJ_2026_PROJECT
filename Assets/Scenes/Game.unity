@@ -2475,6 +2475,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6ceae29ae73e32f458340d9e7e3ae187, type: 2}
   minNPCPerDay: 2
   maxNPCPerDay: 5
+  Timing: 3.29
 --- !u!4 &1291097400
 Transform:
   m_ObjectHideFlags: 0
@@ -8980,6 +8981,7 @@ MonoBehaviour:
   duration: 0.4
   openEase: 9
   closeEase: 8
+  ButtonCrafting: {fileID: 2099877081}
 --- !u!114 &6625565115508216094
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8992,13 +8994,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8481178beddaeaa46a7307b749b104f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EndOfDayUI
-  PanelDay: {fileID: 1645055381}
-  PanelNewsNormal: {fileID: 1107194700}
-  PanelNewsWanted: {fileID: 602890858}
-  TextNews: {fileID: 1814407630}
-  TextDay: {fileID: 288545945}
+  panelDay: {fileID: 1645055382}
+  panelNewsNormal: {fileID: 1107194700}
+  panelNewsWanted: {fileID: 602890858}
+  textNews: {fileID: 1814407630}
+  textDay: {fileID: 288545945}
   nextDay: {fileID: 2042105536}
-  duration: 0.4
+  duration: 1
   openEase: 9
   closeEase: 8
   Results: 0

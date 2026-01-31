@@ -19,6 +19,8 @@ public class CraftingManager : MonoBehaviour
 
     bool isAnimating;
 
+    public GameObject ButtonCrafting;
+
     void Awake()
     {
         Instance = this;
@@ -40,6 +42,7 @@ public class CraftingManager : MonoBehaviour
 
         isAnimating = true;
         panelCrafting.gameObject.SetActive(true);
+        ButtonCrafting.gameObject.SetActive(false);
 
         panelCrafting.anchoredPosition = offScreenPos;
         canvasGroup.alpha = 0f;

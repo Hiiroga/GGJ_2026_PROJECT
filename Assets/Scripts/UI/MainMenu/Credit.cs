@@ -1,7 +1,9 @@
+using UnityEngine.SceneManagement;
+
 public class Credit : ButtonBaseClass
 {
     public override void OnClick()
-    {        
-        // Will implement it later
+    {
+        SceneManager.LoadScene(4);
     }
 }

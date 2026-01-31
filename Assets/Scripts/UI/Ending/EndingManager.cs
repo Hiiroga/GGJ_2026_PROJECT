@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class EndingManager : MonoBehaviour
 {
@@ -67,6 +68,12 @@ public class EndingManager : MonoBehaviour
         }
     }
 
+    IEnumerator BackToMainMenu()
+    {
+        yield return new WaitForSeconds(2f);
+        SceneManager.LoadScene(0);
+    }
+
     void FadeInPanel(RectTransform panel)
     {
         panel.gameObject.SetActive(true);
@@ -79,5 +86,7 @@ public class EndingManager : MonoBehaviour
 
         cg.DOFade(1f, fadeDuration)
           .SetEase(Ease.OutQuad);
+        
+        StartCoroutine(BackToMainMenu());
     }
 }
