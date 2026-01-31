@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4928052853422252690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5430681855968000112}
+  - component: {fileID: 6536458072075686346}
+  - component: {fileID: 429780865461528989}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5430681855968000112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928052853422252690}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 961.7226, y: 506.34915, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6536458072075686346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928052853422252690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88674d4d5d7c56846af6821f382fd886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EmotionManager
+  selectedEmotion: 0
+  emotionConfigs:
+  - emotion: 0
+    mask: 0
+    eye: 0
+    mouth: 0
+  - emotion: 1
+    mask: 0
+    eye: 0
+    mouth: 1
+  - emotion: 2
+    mask: 0
+    eye: 1
+    mouth: 0
+  - emotion: 3
+    mask: 1
+    eye: 1
+    mouth: 1
+  - emotion: 4
+    mask: 1
+    eye: 1
+    mouth: 2
+  maskPutih: {fileID: 122760943047276859, guid: 111d77595b604704581658aa49f22504, type: 3}
+  maskHitam: {fileID: -313496787, guid: 111d77595b604704581658aa49f22504, type: 3}
+  eyeNormal: {fileID: -3651642650525344952, guid: 2cd1a5243b018b04eb3295f0bb71c534, type: 3}
+  eyeRetak: {fileID: -302299302, guid: 2cd1a5243b018b04eb3295f0bb71c534, type: 3}
+  mouthSenyum: {fileID: 6616466520673715413, guid: fec5ba174c42ec74e831cca706ad447c, type: 3}
+  mouthCemberut: {fileID: 1473259242033315528, guid: fec5ba174c42ec74e831cca706ad447c, type: 3}
+  mouthFlat: {fileID: 6830129190953753546, guid: fec5ba174c42ec74e831cca706ad447c, type: 3}
+  baseLayer: {fileID: 0}
+  eyeLayer: {fileID: 0}
+  mouthLayer: {fileID: 0}
+  ApplyButton: {fileID: 0}
+--- !u!114 &429780865461528989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4928052853422252690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3926d877b189d934bbe7f47af1909d2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NotesManager
+  PanelBg: {fileID: 0}
+  panelNotes: {fileID: 0}
+  panelNotes2: {fileID: 0}
+  animDuration: 0.4
+  showEase: 27
+  switchEase: 9

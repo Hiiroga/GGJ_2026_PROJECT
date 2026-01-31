@@ -13,7 +13,7 @@ public class NPCQueueManager : MonoBehaviour
     [SerializeField] private int minNPCPerDay = 2;
     [SerializeField] private int maxNPCPerDay = 5;
 
-    private Queue<NPCData> npcQueue = new Queue<NPCData>();
+    public Queue<NPCData> npcQueue = new Queue<NPCData>();
     private List<NPCServeResult> dailyResults = new List<NPCServeResult>();
 
     // Events
@@ -44,6 +44,13 @@ public class NPCQueueManager : MonoBehaviour
 
     public void StartDay()
     {
+        if( CurrentDay >= 4)
+        {
+            //ending
+            //TODO: EndingUI.Instance.ShowEnding();
+            return;
+        }
+        GameFlowController.Instance.NextDay.gameObject.SetActive(false);
         CurrentDay++;
         dailyResults.Clear();
         GenerateNPCQueue();
@@ -140,6 +147,7 @@ public class NPCQueueManager : MonoBehaviour
     {
         Debug.Log($"[NPCQueueManager] Day {CurrentDay} ended. Results: {dailyResults.Count} NPCs served");
         OnDayEnded?.Invoke(CurrentDay, new List<NPCServeResult>(dailyResults));
+        DialogueManager.Instance.GotoCrafting.gameObject.SetActive( false );
     }
     
     /// Mendapatkan skor hari ini 
@@ -148,7 +156,7 @@ public class NPCQueueManager : MonoBehaviour
         int score = 0;
         foreach (var result in dailyResults)
         {
-            if (result.wasCorrect) score++;
+            if (!result.wasCorrect) score++;
         }
         return score;
     }

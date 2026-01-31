@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 /// <summary>
 /// Controller untuk mengatur flow gameplay.
@@ -6,9 +8,17 @@ using UnityEngine;
 /// </summary>
 public class GameFlowController : MonoBehaviour
 {
+    public static GameFlowController Instance { get; private set; }
     [Header("Settings")]
     [SerializeField] private bool autoStartDayOnSceneLoad = true;
     [SerializeField] private float startDelay = 0.5f;
+
+    public Button NextDay;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -53,8 +63,18 @@ public class GameFlowController : MonoBehaviour
 
     private void HandleDayEnded(int day, System.Collections.Generic.List<NPCServeResult> results)
     {
-        Debug.Log($"[GameFlowController] Day {day} ended with {results.Count} NPCs served.");
+        int score = 0;
+        int ScoreAll;
+        foreach (var result in results)
+        {
+            if (!result.wasCorrect) score++;
+        }
+        ScoreAll = PlayerPrefs.GetInt("Score") + score;
+        PlayerPrefs.SetInt("Score", ScoreAll);
+        Debug.Log($"[GameFlowController] Day {day} ended with {score} Wrong");
+        Debug.Log($"PlayerPrefs = {ScoreAll}");
         // TODO: Show end of day UI / results screen
-        // Contoh: EndOfDayUI.Instance.ShowResults(results);
+        EndOfDayUI.Instance.Results = score;
+        NextDay.gameObject.SetActive(true);
     }
 }

@@ -6,6 +6,7 @@ using static UnityEditor.Progress;
 
 public class MaskLayerController : MonoBehaviour, IDropHandler
 {
+    public static MaskLayerController Instance { get; private set; }
     [Header("Image Layer")]
     public Image baseLayer;
     public Image eyeLayer;
@@ -18,6 +19,11 @@ public class MaskLayerController : MonoBehaviour, IDropHandler
     private DragableItem usedBaseItem;
     private DragableItem usedEyeItem;
     private DragableItem usedMouthItem;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     public void OnDrop(PointerEventData eventData)
     {

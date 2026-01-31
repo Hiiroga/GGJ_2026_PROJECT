@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Ink.Runtime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -19,6 +20,9 @@ public class DialogueManager : MonoBehaviour
 
     public bool IsDialogueActive => currentStory != null;
     public bool CanContinue => currentStory != null && currentStory.canContinue;
+
+    public Button GotoCrafting;
+   
 
     private void Awake()
     {
@@ -69,6 +73,8 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        GotoCrafting.gameObject.SetActive(false);
+
         Debug.Log($"[DialogueManager] Starting dialogue: {entry.dialogueId}");
 
         currentDialogue = entry;
@@ -108,6 +114,7 @@ public class DialogueManager : MonoBehaviour
         currentDialogue = null;
 
         OnDialogueEnded?.Invoke();
+        GotoCrafting.gameObject.SetActive(true);
     }
 
     public void ForceEndDialogue()

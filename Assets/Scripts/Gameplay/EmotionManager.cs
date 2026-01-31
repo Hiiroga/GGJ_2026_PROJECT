@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class EmotionManager : MonoBehaviour
 {
     [Header("Current Emotion")]
-    public Emotion selectedEmotion;
+    public MaskNeeded selectedEmotion;
 
     [Header("Emotion Configs")]
     public EmotionConfig[] emotionConfigs;
@@ -33,7 +33,14 @@ public class EmotionManager : MonoBehaviour
 
     public void CheckCurrentEmotion()
     {
-        
+        if (baseLayer.sprite == null ||
+            eyeLayer.sprite == null ||
+            mouthLayer.sprite == null)
+        {
+            Debug.Log("MASK BELUM LENGKAP");
+            return;
+        }
+
         MaskType currentMask = baseLayer.sprite == maskPutih
             ? MaskType.Putih
             : MaskType.Hitam;
@@ -49,21 +56,22 @@ public class EmotionManager : MonoBehaviour
         else if (mouthLayer.sprite == mouthCemberut)
             currentMouth = MouthType.Cemberut;
 
-        Emotion? result = DetectEmotion(
+        
+        MaskNeeded result = DetectEmotion(
             currentMask,
             currentEye,
             currentMouth
         );
 
-        if (result == selectedEmotion)
-        {
-            Debug.Log("EMOSI TERDETEKSI Benar: " + result);
-        }
-        else
-        {
-            Debug.Log("KOMBINASI TIDAK VALID");
-        }
+        NPCQueueManager.Instance.ServeCurrentNPC(result);
+
+        MaskLayerController.Instance.resetLayer();
+        CraftingManager.Instance.CloseCrafting();
+
+        Debug.Log($"MASK DIKIRIM KE NPC: {result}");
     }
+
+
 
     void UpdateApplyButtonState()
     {
@@ -82,7 +90,7 @@ public class EmotionManager : MonoBehaviour
     }
 
 
-    EmotionConfig GetConfig(Emotion emotion)
+    EmotionConfig GetConfig(MaskNeeded emotion)
     {
         foreach (var cfg in emotionConfigs)
         {
@@ -92,11 +100,11 @@ public class EmotionManager : MonoBehaviour
         return null;
     }
 
-    public Emotion? DetectEmotion(
-        MaskType mask,
-        EyeType eye,
-        MouthType mouth
-    )
+    public MaskNeeded DetectEmotion(
+    MaskType mask,
+    EyeType eye,
+    MouthType mouth
+)
     {
         foreach (var cfg in emotionConfigs)
         {
@@ -107,7 +115,9 @@ public class EmotionManager : MonoBehaviour
                 return cfg.emotion;
             }
         }
-        return null;
+
+        return MaskNeeded.None; 
     }
+
 
 }

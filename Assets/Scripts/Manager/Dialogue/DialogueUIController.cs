@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -6,17 +7,40 @@ using UnityEngine.InputSystem;
 public class DialogueUIController : MonoBehaviour
 {
     [Header("UI References")]
-    [SerializeField] private GameObject dialoguePanel;
+    [SerializeField] private RectTransform dialoguePanel;
+    [SerializeField] private CanvasGroup dialogueCanvas;
     [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
 
     [Header("Typewriter Settings")]
     [SerializeField] private float typeSpeed = 0.03f;
 
+    [Header("Animation")]
+    public float duration = 0.4f;
+    public Ease openEase = Ease.OutCubic;
+    public Ease closeEase = Ease.InCubic;
+
+    Vector2 onScreenPos;
+    Vector2 offScreenPos;
+
+    bool isAnimating;
+
     private PlayerInput playerInput;
     private Coroutine typewriterCoroutine;
     private string currentFullText;
     private bool isTyping;
+
+    void Awake()
+    {
+
+        onScreenPos = dialoguePanel.anchoredPosition;
+        offScreenPos = onScreenPos + new Vector2(0, -Screen.height);
+
+        dialoguePanel.anchoredPosition = offScreenPos;
+        dialogueCanvas.alpha = 0f;
+
+       
+    }
 
     private void OnEnable()
     {
@@ -156,17 +180,36 @@ public class DialogueUIController : MonoBehaviour
 
     private void ShowDialogue()
     {
-        if (dialoguePanel != null)
-        {
-            dialoguePanel.SetActive(true);
-        }
+        if (isAnimating) return;
+
+        isAnimating = true;
+        dialoguePanel.gameObject.SetActive(true);
+
+        dialoguePanel.anchoredPosition = offScreenPos;
+        dialogueCanvas.alpha = 0f;
+
+        DOTween.Sequence()
+            .Append(dialoguePanel.DOAnchorPos(onScreenPos, duration).SetEase(openEase))
+            .Join(dialogueCanvas.DOFade(1f, duration * 0.8f))
+            .OnComplete(() =>
+            {
+                isAnimating = false;
+            });
     }
 
     private void HideDialogue()
     {
-        if (dialoguePanel != null)
-        {
-            dialoguePanel.SetActive(false);
-        }
+        if (isAnimating || !dialoguePanel.gameObject.activeSelf) return;
+
+        isAnimating = true;
+
+        DOTween.Sequence()
+            .Append(dialoguePanel.DOAnchorPos(offScreenPos, duration).SetEase(closeEase))
+            .Join(dialogueCanvas.DOFade(0f, duration * 0.8f))
+            .OnComplete(() =>
+            {
+                dialoguePanel.gameObject.SetActive(false);
+                isAnimating = false;
+            });
     }
 }
