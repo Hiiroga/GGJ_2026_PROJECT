@@ -1542,7 +1542,7 @@ MonoBehaviour:
   sounds:
   - key: mainmenu
     clip: {fileID: 8300000, guid: 0bdf047212bbe0e49b142b0ac60d8cf5, type: 3}
-    volume: 0.75
+    volume: 1
   - key: ingame
     clip: {fileID: 8300000, guid: d471678620ed377428c04351adc0900b, type: 3}
     volume: 0.6

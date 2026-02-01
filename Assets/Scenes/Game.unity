@@ -2330,7 +2330,7 @@ MonoBehaviour:
   minNPCPerDay: 2
   maxNPCPerDay: 5
   Timing: 3.29
-  DayEnd: 1
+  DayEnd: 3
 --- !u!4 &1291097400
 Transform:
   m_ObjectHideFlags: 0

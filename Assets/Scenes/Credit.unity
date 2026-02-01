@@ -554,7 +554,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -1086}
-  m_SizeDelta: {x: 754.7828, y: 924.4963}
+  m_SizeDelta: {x: 953.1064, y: 924.4963}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1363332558
 CanvasRenderer:
@@ -584,9 +584,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Produced By\nNyawit Team\n\nArtist, Designer\nYudhistira\n\nLead programmer,
-    Designer\nAulia Fathurohman\n\nprogrammer\nRaden \n\nWritter\nHafizh \n\nSound
-    Designer\nDhiya"
+  m_text: "Produced By\nNyawit Team\n\nArtist, Designer\nYudhistira Maulana Samaratungga\n\nLead
+    programmer, Designer\nAulia Fathurohman\n\nProgrammer\nRaden Demas Amirul Plawirakusumah\n\nWriter\nHafizh
+    \n\nSound Designer\nDhiya"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
