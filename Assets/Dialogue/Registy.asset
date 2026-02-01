@@ -27,4 +27,19 @@ MonoBehaviour:
     inkJsonAsset: {fileID: 4900000, guid: eb21faeb0de047b458f414ba227447e6, type: 3}
   - dialogueId: scared_1
     maskType: 4
-    inkJsonAsset: {fileID: 4900000, guid: 00fbe00a0eda65740bfa5435acb26181, type: 3}
+    inkJsonAsset: {fileID: 4900000, guid: 3ede8960f90fa864ca3cd1a717a445c2, type: 3}
+  - dialogueId: angry_2
+    maskType: 0
+    inkJsonAsset: {fileID: 4900000, guid: 4cf3cbf0954c76d44a6a2aeda2db693a, type: 3}
+  - dialogueId: happy_2
+    maskType: 1
+    inkJsonAsset: {fileID: 4900000, guid: 90fc4368005d8a140b64c6b96c989107, type: 3}
+  - dialogueId: iinlove_2
+    maskType: 3
+    inkJsonAsset: {fileID: 4900000, guid: 87ee2ca8093185d4b96edc2fbb8da115, type: 3}
+  - dialogueId: sad_2
+    maskType: 2
+    inkJsonAsset: {fileID: 4900000, guid: 08f1a54150241a84eb1f7f66c60f63cb, type: 3}
+  - dialogueId: scared_2
+    maskType: 4
+    inkJsonAsset: {fileID: 4900000, guid: 50b99b309d76b5244a80e013e80363b0, type: 3}
