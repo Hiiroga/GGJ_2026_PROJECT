@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class EmotionManager : MonoBehaviour
 {
+    public static EmotionManager Instance {  get; private set; } 
     [Header("Current Emotion")]
     public MaskNeeded selectedEmotion;
 
@@ -30,7 +31,18 @@ public class EmotionManager : MonoBehaviour
     [Header("UI Button")]
     public Button ApplyButton;
 
-
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void CheckCurrentEmotion()
     {
         if (baseLayer.sprite == null ||

@@ -33,6 +33,8 @@ public class NPCQueueManager : MonoBehaviour
 
     public float Timing;
 
+    public int DayEnd = 3;
+
     private void Awake()
     {
         if (Instance == null)
@@ -48,7 +50,7 @@ public class NPCQueueManager : MonoBehaviour
 
     public void StartDay()
     {
-        if( CurrentDay >= 4)
+        if( CurrentDay >= DayEnd)
         {
             //ending
             //TODO: Scene(Ending)

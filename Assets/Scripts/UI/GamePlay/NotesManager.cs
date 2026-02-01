@@ -4,6 +4,7 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class NotesManager : MonoBehaviour
 {
+    public static NotesManager Instance { get; private set; }
     public RectTransform PanelBg;
     public RectTransform panelNotes;
     public RectTransform panelNotes2;
@@ -17,6 +18,19 @@ public class NotesManager : MonoBehaviour
     Vector2 offBottomPos;
     Vector2 offLeftPos;
     Vector2 offRightPos;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {

@@ -48,7 +48,7 @@ public class PauseController : MonoBehaviour
 
     public void Pause()
     {
-        SfxManager.Instance?.Play("pausebutton");
+       
         IsPaused = true;
         Time.timeScale = 0f;
         if (pausePanel != null) pausePanel.SetActive(true);
@@ -63,7 +63,12 @@ public class PauseController : MonoBehaviour
 
     public void MainMenu()
     {
-        SfxManager.Instance?.Play("pausebutton");
+        Destroy(EmotionManager.Instance.gameObject);
+        Destroy(NPCQueueManager.Instance.gameObject);
+        Destroy(NotesManager.Instance.gameObject);
+        Destroy(DialogueManager.Instance.gameObject);
+        Destroy(EndOfDayUI.Instance.gameObject);
+        Destroy(CraftingManager.Instance.gameObject);
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
