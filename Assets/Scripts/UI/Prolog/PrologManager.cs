@@ -52,6 +52,7 @@ public class PrologManager : MonoBehaviour
         }
 
         // TODO: lanjut ke scene gameplay
+        MusicManager.Instance.Play("ingame");
         SceneManager.LoadScene(2);
     }
 
